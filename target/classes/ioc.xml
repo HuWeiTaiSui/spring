@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--注册一个Person对象，String会自动的创建这个Person对象-->
+    <!--一个bean标签可以注册一个组件（对象，类）
+          class:写要注册的组件的全类名
+          id：这个对象的唯一表示；
+   -->
+    <bean id="person01" class="com.hu.bean.Person">
+        <!--  使用property标签为 person对象的属性赋值
+          name="";指定属性名
+          value="";为这个属性赋值
+         -->
+        <property name="lastName" value="张三"></property>
+        <property name="age" value="18"></property>
+        <property name="email" value="sss"></property>
+        <property name="gender" value="男"></property>
+    </bean>
+    <bean id="person02" class="com.hu.bean.Person">
+        <property name="lastName" value="李四"></property>
+    </bean>
+    <bean id="person03" class="com.hu.bean.Person">
+        <!--调用有参构造器进行创建对象并赋值
+        一个constructor-arg表示一个参数
+        -->
+        <constructor-arg name="lastName" value="小米"></constructor-arg>
+        <constructor-arg name="email" value="xaioming@qq.com"></constructor-arg>
+        <constructor-arg name="age" value="18"></constructor-arg>
+        <constructor-arg name="gender" value="男"></constructor-arg>
+    </bean>
+    <!-- 可以省略name属性，必须严格按照构造器参数位置-->
+    <!--public Person(String lastName, Integer age, String gender, String email) -->
+    <!--                      0                1             2              3-->
+    <bean id="person04" class="com.hu.bean.Person">
+        <constructor-arg value="小米"></constructor-arg>
+        <constructor-arg value="21"></constructor-arg>
+        <!--index="3" :为参数指索引，从0快速-->
+        <constructor-arg value="111@aa.com" index="3"></constructor-arg>
+        <constructor-arg value="男" index="2"></constructor-arg>
+    </bean>
+    <!-- public Person(String lastName, Integer age, String gender)-->
+    <!-- public Person(String lastName, String email, String gender)-->
+    <!--重载的情况下type 可以指定参数类型-->
+    <bean id="person05" class="com.hu.bean.Person">
+        <constructor-arg value="小米"></constructor-arg>
+        <constructor-arg value="21" index="1" type="java.lang.Integer"></constructor-arg>
+        <constructor-arg value="男"></constructor-arg>
+    </bean>
+    <!--3为各种属性赋值-->
+</beans>
